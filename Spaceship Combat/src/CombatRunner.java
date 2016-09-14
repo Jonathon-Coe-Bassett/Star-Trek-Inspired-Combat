@@ -7,6 +7,7 @@ public class CombatRunner
 			{
 				greetPlayer();
 				Mechanics.makeShips();
+				Mechanics.sleep(100);
 				Mechanics.chooseShip();
 				Mechanics.Combat();
 			}

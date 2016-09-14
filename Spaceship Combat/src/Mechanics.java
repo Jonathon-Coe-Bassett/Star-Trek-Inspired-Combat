@@ -4,7 +4,7 @@ public class Mechanics
 	{
 		static Ship one, two, three, four, five, player, dev;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
-		static boolean enemyShipLives, playerShipLives;
+		static boolean enemyShipLives, playerShipLives, attackPower;
 		
 		public static int rollDice (int a, int b)
 			{
@@ -50,8 +50,11 @@ public class Mechanics
 						{
 						System.out.println(print.getName());
 						System.out.println(print.getDescription());
+						sleep(100);
 						}
 				}			
+			try
+				{
 			Scanner userInput=new Scanner(System.in);
 			String choice=userInput.nextLine();
 			choice=choice.toLowerCase();
@@ -65,6 +68,11 @@ public class Mechanics
 						}
 				}
 			System.out.println(CombatRunner.captain + ", you have chosen the " + player.getName());
+				} catch (Exception e)
+				{
+					System.out.println("Please enter an actual ship name.");
+					chooseShip();
+				}
 
 		}
 		public static void Combat()
@@ -75,6 +83,7 @@ public class Mechanics
 			while (enemyShipLives && playerShipLives)
 				{
 					routePower();
+					rollStats();
 					for (int i=0; i<7; i++)
 						{
 						sleep(300);
@@ -92,21 +101,48 @@ public class Mechanics
 			System.out.println("Captain, should we route excess power to weapons systems or shield systems?");
 			System.out.println("a) Weapons");
 			System.out.println("b) Shields");
+			try
+				{
 			String choice=userInput.nextLine();
 			choice=choice.toLowerCase();
 			if (choice.equals("a") || choice.equals("weapons"))
 				{
 					player.setAttack(player.getAttack()+1);
+					attackPower=true;
 					System.out.println("Phasers have been amplified.");
 				}
-			else if (choice.equals("b") || choice.equals("shields"));
+			else if (choice.equals("b") || choice.equals("shields"))
 				{
 					player.setShields(player.getShields()+1);
 					System.out.println("Shield power has increased.");
 				}
+			else
+					{
+						routePower();
+					}
+				} catch (Exception e)
+				{
+					routePower();
+				}
 		}
 		public static void rollStats()
 		{
+			int damage=(rollDice(player.getAttack(), 1));
+			System.out.println(damage);
+			vs(damage, );
+			
+		}
+		public static boolean vs(int a, int b)
+		{
+			System.out.println(a*rollDice(a, b)/a>b);
+			if (a*rollDice(a, b)/a>b)
+			{
+				return true;
+			}
+			else
+				{
+					return false;
+				}
 			
 		}
 		public static void sleep(int a)
