@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class CombatRunner
 	{
-		public static String captain;
+		public static String name;
 
 		public static void main(String[] args)
 			{
@@ -15,8 +15,8 @@ public class CombatRunner
 			{
 				System.out.println("You are a new Federation captain. What is your name?");
 				Scanner userInput=new Scanner(System.in);
-				captain=userInput.nextLine();
-				System.out.println("Welcome to the Federation, Captain " + captain + "!" );
+				name=("Captain ")+userInput.nextLine();
+				System.out.println("Welcome to the Federation, " + name + "!" );
 			}
 
 	}
