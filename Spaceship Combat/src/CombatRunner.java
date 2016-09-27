@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class CombatRunner
 	{
-		public static String name;
+		public static Player player;
 
 		public static void main(String[] args)
 			{
@@ -15,8 +15,23 @@ public class CombatRunner
 			{
 				System.out.println("You are a new Federation captain. What is your name?");
 				Scanner userInput=new Scanner(System.in);
-				name=("Captain ")+userInput.nextLine();
-				System.out.println("Welcome to the Federation, " + name + "!" );
+				player.setName(("Captain ")+userInput.nextLine());
+				System.out.println("Welcome to the Federation, " + player.getName() + "!" );
+				System.out.println("What is your gender?");
+				boolean genderNotChosen=true;
+				while (genderNotChosen)
+					{
+				String gender=userInout.nextLine();
+				gender=gender.toLowerCase();
+				if (gender.equals("female") || gender.equals("girl"))
+					{
+						player.setGender(true);
+					}
+				if (gender.equals("male" || gender.equals("boy")))
+					{
+						player.setGender(false);
+					}
+					}
 			}
 
 	}

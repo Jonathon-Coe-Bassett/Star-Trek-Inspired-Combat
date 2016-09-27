@@ -1,12 +1,12 @@
 
 public class Ship
 	{
-		String name;
-		String description;
-		int attack;
-		int shields;
-		int evade;
-		int accuracy;
+		private String name;
+		private String description;
+		private int attack;
+		private int shields;
+		private int evade;
+		private int accuracy;
 		public Ship (String n, int a, int s, int e, int ac, String d)
 		{
 			name=n;

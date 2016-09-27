@@ -4,6 +4,7 @@ public class Mechanics
 	{
 		static Ship one, two, three, four, five, player, dev;
 		static Ship enemy=randomShip();
+		static Ship beforeCombat;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
 		static boolean enemyShipLives, playerShipLives, enemyEvades, playerEvades;
 		
@@ -53,7 +54,7 @@ public class Mechanics
 					
 					sum=a+b+c+d;
 				}
-			Ship enemy=new Ship("ISS", a, b, c, d, null);
+			Ship enemy=new Ship("Enemy", a, b, c, d, null);
 			//System.out.println(enemy.getAttack() + enemy.getShields() + enemy.getAccuracy() + enemy.getEvade());
 			return enemy;
 		}
@@ -86,6 +87,7 @@ public class Mechanics
 					if (choice.equals(name))
 						{
 							player=shipBay.get(i);
+							player.setShip(player);
 						}
 				}
 			System.out.println(CombatRunner.name + ", you have chosen the " + player.getName());
