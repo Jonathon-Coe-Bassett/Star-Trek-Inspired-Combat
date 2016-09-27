@@ -21,17 +21,18 @@ public class CombatRunner
 				boolean genderNotChosen=true;
 				while (genderNotChosen)
 					{
-				String gender=userInout.nextLine();
+				String gender=userInput.nextLine();
 				gender=gender.toLowerCase();
 				if (gender.equals("female") || gender.equals("girl"))
 					{
 						player.setGender(true);
 					}
-				if (gender.equals("male" || gender.equals("boy")))
+				if (gender.equals("male") || gender.equals("boy"))
 					{
 						player.setGender(false);
 					}
 					}
+				//test
 			}
 
 	}
