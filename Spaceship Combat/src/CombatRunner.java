@@ -1,7 +1,8 @@
 import java.util.Scanner;
 public class CombatRunner
 	{
-		public static Player player;
+		public static Player player=new Player(null, 10, null, false, null);
+		public static String they, their; 
 
 		public static void main(String[] args)
 			{
@@ -9,7 +10,7 @@ public class CombatRunner
 				Mechanics.makeShips();
 				Mechanics.sleep(100);
 				Mechanics.chooseShip();
-				Mechanics.Combat();
+				Mechanics.shipCombat();
 			}
 		public static void greetPlayer()
 			{
@@ -26,13 +27,22 @@ public class CombatRunner
 				if (gender.equals("female") || gender.equals("girl"))
 					{
 						player.setGender(true);
+						they="she";
+						their="her";
+						genderNotChosen=false;
 					}
 				if (gender.equals("male") || gender.equals("boy"))
 					{
 						player.setGender(false);
+						they="he";
+						their="his";
+						genderNotChosen=false;
 					}
 					}
-				//test
+				player.setWeapon(new Weapon("Captain's Pistol", "Wickwire Weaponry", 'a', 1));
+				System.out.println("You are equiped with a " + player.getWeapon().getName() + " manufactured by " + player.getWeapon().getMaker() + ", model " + player.getWeapon().getModel() + ". Standard for all Federation captains.");
+				Mechanics.sleep(1000);
+				System.out.println("");
 			}
 
 	}
