@@ -6,9 +6,9 @@ public class ShipCreation
 		
 		public static Ship buildShip()
 		{
-			Ship ship =null;
+			Ship ship=new Ship(null, 0, 0, 0, 0, null);
 			System.out.println("After your impressive performance in defending the Federation headquarters, you are now allowed to oversee and dictate the building of your new ship!");
-			System.out.println("You have " + days + " days total to build this ship before your next mission. You can spend any number of days on different ship systems.");
+			System.out.println("You have " + days + " days total to build your ship before your next mission. You can spend any number of days on different ship systems.");
 			ship.setAttack(attack());
 			ship.setShields(shields());
 			ship.setAccuracy(accuracy());
@@ -18,6 +18,7 @@ public class ShipCreation
 			Scanner userInput=new Scanner(System.in);
 			System.out.println("And finally, what should the name of your ship be?");
 			ship.setName(userInput.nextLine());
+			System.out.println("The " + ship.getName() + " is ready for her first mission, " + CombatRunner.player.getName() + "!");
 			return ship;
 			
 		}
