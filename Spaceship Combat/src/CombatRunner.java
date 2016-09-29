@@ -7,10 +7,11 @@ public class CombatRunner
 		public static void main(String[] args)
 			{
 				greetPlayer();
-				Mechanics.makeShips();
+				/*Mechanics.makeShips();
 				Mechanics.sleep(100);
 				Mechanics.chooseShip();
-				Mechanics.shipCombat();
+				Mechanics.shipCombat();*/
+				player.setShip(ShipCreation.buildShip());
 			}
 		public static void greetPlayer()
 			{
@@ -40,6 +41,7 @@ public class CombatRunner
 					}
 					}
 				player.setWeapon(new Weapon("Captain's Pistol", "Wickwire Weaponry", 'a', 1));
+				Weapon.arsenal.add(player.getWeapon());
 				System.out.println("You are equiped with a " + player.getWeapon().getName() + " manufactured by " + player.getWeapon().getMaker() + ", model " + player.getWeapon().getModel() + ". Standard for all Federation captains.");
 				Mechanics.sleep(1000);
 				System.out.println("");
