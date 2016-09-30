@@ -1,12 +1,12 @@
 
-public class Player
+public class Person
 	{
 		private String name;
 		private int health;
 		private Weapon weapon;
 		private boolean gender;
 		private Ship ship;
-		public Player(String n, int h, Weapon w, boolean g, Ship s)
+		public Person(String n, int h, Weapon w, boolean g, Ship s)
 		{
 			name=n;
 			health=h;

@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Mechanics
 	{
 		static Ship one, two, three, four, five, player, dev;
-		static Ship enemy=randomShip();
+		static Ship enemy=randomShip(20);
 		static Ship beforeCombat;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
 		static boolean enemyShipLives, playerShipLives, enemyEvades, playerEvades;
@@ -14,7 +14,7 @@ public class Mechanics
 				int total=0;
 				while(count<a)
 					{
-						int roll=(int)((Math.random()*b)+1);	
+						int roll=(int)((Math.random()*b)+1);
 						total=total+roll;
 						count++;
 					}
@@ -38,14 +38,14 @@ public class Mechanics
 
 
 			}
-		public static Ship randomShip()
+		public static Ship randomShip(int total)
 		{
 			int a=0;
 			int b=0;
 			int c=0;
 			int d=0;
 			int sum=0;
-			while (sum != 20)
+			while (sum != total)
 				{
 					a=(int) (Math.random()*8)+1;
 					b=(int) (Math.random()*8)+1;

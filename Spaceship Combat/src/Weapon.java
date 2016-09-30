@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Weapon
 	{
-		static ArrayList<Weapon> arsenal=new ArrayList<>();
+		public static ArrayList<Weapon> arsenal=new ArrayList<>();
 		private String name;
 		private String maker;
 		private char model;

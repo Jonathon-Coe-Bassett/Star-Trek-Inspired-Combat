@@ -1,10 +1,10 @@
 import java.util.Scanner;
 public class CombatRunner
 	{
-		public static Player player=new Player(null, 10, null, false, null);
+		public static Person player=new Person(null, 10, null, false, null);
 		public static String they, their; 
 
-		public static void main(String[] args)
+		public static void main(String[] argsv)
 			{
 				greetPlayer();
 				/*Mechanics.makeShips();
