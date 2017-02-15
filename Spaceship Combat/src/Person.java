@@ -54,5 +54,19 @@ public class Person
 			{
 				this.ship = ship;
 			}
+		public static Person testPerson()
+		{
+			return new Person("NAME", 10, WeaponList.testWeapon(), false, Ship.testShip());
+		}
+		public void askSave()
+			{
+				System.out.println("Would you like to save the game?");
+				if(Mechanics.yn())
+					{
+						System.out.println("Saving...");
+						SaveGame.saveGame(this);
+						System.out.println("Successful!");
+					}
+			}
 		
 	}

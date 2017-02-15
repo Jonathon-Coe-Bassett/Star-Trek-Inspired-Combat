@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Mechanics
 	{
-		static Ship one, two, three, four, five, player, dev;
+		static Ship one, two, three, four, five, dev;
+		private static Ship player;
+		private static Ship original=CombatRunner.player.getShip();
 		static Ship enemy=randomShip(20);
 		static Ship beforeCombat;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
@@ -20,6 +22,15 @@ public class Mechanics
 					}
 				return total;
 				
+			}
+		public static boolean yn()
+			{
+				System.out.println("Answer yes[y] or no[n].");
+				Scanner ui=new Scanner(System.in);
+				String in=ui.nextLine();
+				if(in.equals("y") || in.equals("yes"))
+						return true;
+				return false;
 			}
 		public static void makeShips()
 			{
@@ -127,6 +138,8 @@ public class Mechanics
 				{
 					System.out.println("We've penetrated their shields! The enemy ship is falling apart!");
 					System.out.println("We've won!");
+					player=original;
+					System.out.println("All systems normaliaaing.");
 					//add flyTo method
 				}
 			else
@@ -155,6 +168,7 @@ public class Mechanics
 			System.out.println(CombatRunner.player.getName()+" , should we route excess power to weapon's systems or shield systems?");
 			System.out.println("a) Weapons");
 			System.out.println("b) Shields");
+			System.out.println("c) Scanners");
 			try
 				{
 			String choice=userInput.nextLine();
@@ -165,6 +179,11 @@ public class Mechanics
 					System.out.println("Phasers have been amplified.");
 				}
 			else if (choice.equals("b") || choice.equals("shields"))
+				{
+					player.setShields(player.getShields()+1);
+					System.out.println("Shield power has increased.");
+				}
+			else if (choice.equals("c") || choice.equals("scanners"))
 				{
 					player.setShields(player.getShields()+1);
 					System.out.println("Shield power has increased.");

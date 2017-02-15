@@ -64,4 +64,16 @@ public class Ship
 			{
 				this.accuracy = accuracy;
 			}
+		public static Ship testShip()
+		{
+			return new Ship("SHIP NAME", 1, 1, 1, 1, "SHIP DESCRIPTION");
+		}
+		public void printShipInfo()
+		{
+			System.out.println("Name: " + this.getName());
+			System.out.println("Attack power: " + this.getAttack());
+			System.out.println("Maximum shields: " + this.getShields());
+			System.out.println("Evasion thruster capability: " + this.getEvade());
+			System.out.println("Targeting computer accuracy: " + this.getAccuracy());
+		}
 	}
