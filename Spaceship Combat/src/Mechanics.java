@@ -1,16 +1,18 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Mechanics
 	{
-		static Ship one, two, three, four, five, dev;
-		private static Ship player;
+		//static Ship one, two, three, four, five, dev;
+		private static Ship playerShip;
 		private static Ship original=CombatRunner.player.getShip();
-		static Ship enemy=randomShip(20);
-		static Ship beforeCombat;
+		public static Ship enemy;
+		public static Ship beforeCombat;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
-		static boolean enemyShipLives, playerShipLives, enemyEvades, playerEvades;
+		private static boolean enemyShipLives, playerShipLives, enemyEvades, playerEvades;
+		private static Mechanics m=new Mechanics();
 		
-		public static int rollDice (int a, int b)
+		public int rollDice (int a, int b)
 			{
 				int count=0;
 				int total=0;
@@ -34,18 +36,18 @@ public class Mechanics
 			}
 		public static void makeShips()
 			{
-				one=new Ship("SS. Booper Dooper", 5, 3, 7, 5, "The SS Booper Dooper is an older, louder model, but she still packs a punch. She has a slightly higher attack and good maneuverability, but sacrifices her shield power for accuracy.");
-				two=new Ship("SS. Courage", 7, 3, 2, 8, "SS. Courage has seen her fair share of combat, but rumors say she still wants Imperial blood. She has custom high powered phasers and the best agility in the fleet, however she has low shields and her targeting computers are known to have errors.");	
-				three=new Ship("SS. Titanic",9, 9, 2, 2, "Don't confuse this ship for the Titanic of old Earth legend; this one is truly un-sinkable! She has the best shield capacity and variety of weapons in the fleet, but her size makes her an easy target." );
-				four=new Ship("SS. Tiny Tim", 3, 3, 7, 7, "Tiny Ship Tim lives up to her name. She's a small scouting model with low shields and only wields emergency phasers. Her small size, however, makes her a hard target to hit, and her bio-targeting computer makes her incredibly accurate.");
-				five=new Ship("SS. McGuire", 4, 2, 4, 10, "The SS. McGuire's unique computer system balances between shield, attack, and RCS engines. This computer also has custom targeting subroutines, making the SS. McGuire rarely miss.");
-				dev=new Ship("DEVSHIP", 100, 100, 100, 100, null);
-				shipBay.add(one);
-				shipBay.add(two);
-				shipBay.add(three);
-				shipBay.add(four);
-				shipBay.add(five);
-				shipBay.add(dev);
+//				one=new Ship("SS. Booper Dooper", 5, 3, 7, 5, "The SS Booper Dooper is an older, louder model, but she still packs a punch. She has a slightly higher attack and good maneuverability, but sacrifices her shield power for accuracy.");
+//				two=new Ship("SS. Courage", 7, 3, 2, 8, "SS. Courage has seen her fair share of combat, but rumors say she still wants Imperial blood. She has custom high powered phasers and the best agility in the fleet, however she has low shields and her targeting computers are known to have errors.");	
+//				three=new Ship("SS. Titanic",9, 9, 2, 2, "Don't confuse this ship for the Titanic of old Earth legend; this one is truly un-sinkable! She has the best shield capacity and variety of weapons in the fleet, but her size makes her an easy target." );
+//				four=new Ship("SS. Tiny Tim", 3, 3, 7, 7, "Tiny Ship Tim lives up to her name. She's a small scouting model with low shields and only wields emergency phasers. Her small size, however, makes her a hard target to hit, and her bio-targeting computer makes her incredibly accurate.");
+//				five=new Ship("SS. McGuire", 4, 2, 4, 10, "The SS. McGuire's unique computer system balances between shield, attack, and RCS engines. This computer also has custom targeting subroutines, making the SS. McGuire rarely miss.");
+//				dev=new Ship("DEVSHIP", 100, 100, 100, 100, null);
+				shipBay.add(new Ship("SS. Booper Dooper", 5, 3, 7, 5, "The SS Booper Dooper is an older, louder model, but she still packs a punch. She has a slightly higher attack and good maneuverability, but sacrifices her shield power for accuracy."));
+				shipBay.add(new Ship("SS. Courage", 7, 3, 2, 8, "SS. Courage has seen her fair share of combat, but rumors say she still wants Imperial blood. She has custom high powered phasers and the best agility in the fleet, however she has low shields and her targeting computers are known to have errors."));
+				shipBay.add(new Ship("SS. Titanic",9, 9, 2, 2, "Don't confuse this ship for the Titanic of old Earth legend; this one is truly un-sinkable! She has the best shield capacity and variety of weapons in the fleet, but her size makes her an easy target." ));
+				shipBay.add(new Ship("SS. Tiny Tim", 3, 3, 7, 7, "Tiny Ship Tim lives up to her name. She's a small scouting model with low shields and only wields emergency phasers. Her small size, however, makes her a hard target to hit, and her bio-targeting computer makes her incredibly accurate."));
+				shipBay.add(new Ship("SS. McGuire", 4, 2, 4, 10, "The SS. McGuire's unique computer system balances between shield, attack, and RCS engines. This computer also has custom targeting subroutines, making the SS. McGuire rarely miss."));
+				shipBay.add(new Ship("DEVSHIP", 100, 100, 100, 100, null));
 
 
 			}
@@ -97,11 +99,11 @@ public class Mechanics
 					name=name.toLowerCase();
 					if (choice.equals(name))
 						{
-							player=shipBay.get(i);
-							CombatRunner.player.setShip(player);
+							playerShip=shipBay.get(i);
+							CombatRunner.player.setShip(playerShip);
 						}
 				}
-			System.out.println(CombatRunner.player.getName() + ", you have chosen the " + player.getName());
+			System.out.println(CombatRunner.player.getName() + ", you have chosen the " + playerShip.getName());
 				} catch (Exception e)
 				{
 					System.out.println("Please enter an actual ship name.");
@@ -109,17 +111,20 @@ public class Mechanics
 				}
 
 		}
-		public static void shipCombat()
+		public static void shipCombat() throws FileNotFoundException
 		{
+			enemy=new Ship(randomShip(CombatRunner.difficulty));
+			playerShip=CombatRunner.player.getShip();
 			enemyShipLives=true;
 			playerShipLives=true;
 			System.out.println("An enemy ship aproaches!");
 			while (enemyShipLives && playerShipLives)
 				{
-					routePower();
-					evasionChance();
-					rollStats();
-					checkWin();
+					
+					m.routePower();
+					m.evasionChance();
+					m.rollStats();
+					m.checkWin();
 					for (int i=0; i<7; i++)
 						{
 						sleep(300);
@@ -133,13 +138,16 @@ public class Mechanics
 					System.out.println("Our shields have been penetrated! We have to evacuate!");
 					System.out.println("We have to get off of this ship!");
 					//add escape method
+					
+					System.out.println("GAME OVER.");
+					CombatRunner.homeScreen();
 				}
 			else if (playerShipLives && !enemyShipLives)
 				{
 					System.out.println("We've penetrated their shields! The enemy ship is falling apart!");
 					System.out.println("We've won!");
-					player=original;
-					System.out.println("All systems normaliaaing.");
+					playerShip=original;
+					System.out.println("All systems normaliazing.");
 					//add flyTo method
 				}
 			else
@@ -147,12 +155,14 @@ public class Mechanics
 					System.out.println("Captain, We have both destroyed one another!");
 					System.out.println("We have to get off this ship!");
 					//add escape method
+					System.out.println("GAME OVER.");
+					CombatRunner.homeScreen();
 				}
 			
 		}
-		public static void checkWin()
+		public  void checkWin()
 			{
-				if (player.getShields()<=0)
+				if (playerShip.getShields()<=0)
 					{
 						playerShipLives=false;
 					}
@@ -161,7 +171,7 @@ public class Mechanics
 						enemyShipLives=false;
 					}
 			}
-		public static void routePower()
+		public  void routePower()
 		{
 			Scanner userInput=new Scanner(System.in);
 
@@ -175,18 +185,18 @@ public class Mechanics
 			choice=choice.toLowerCase();
 			if (choice.equals("a") || choice.equals("weapons"))
 				{
-					player.setAttack(player.getAttack()+1);
+					playerShip.setAttack(playerShip.getAttack()+1);
 					System.out.println("Phasers have been amplified.");
 				}
 			else if (choice.equals("b") || choice.equals("shields"))
 				{
-					player.setShields(player.getShields()+1);
+					playerShip.setShields(playerShip.getShields()+1);
 					System.out.println("Shield power has increased.");
 				}
 			else if (choice.equals("c") || choice.equals("scanners"))
 				{
-					player.setShields(player.getShields()+1);
-					System.out.println("Shield power has increased.");
+					System.out.println("Enemy stats are as follows:");
+					enemy.printShipInfo();
 				}
 			else
 					{
@@ -195,13 +205,13 @@ public class Mechanics
 					}
 				} catch (Exception e)
 				{
-					System.out.println("Orders unclear, ");
+					System.out.println("Orders unclear.");
 					routePower();
 				}
 		}
-		public static void evasionChance()
+		public void evasionChance()
 		{
-			if (enemy.getEvade()>(rollDice(1, player.getAccuracy())))
+			if (enemy.getEvade()>(rollDice(1, playerShip.getAccuracy())))
 				{
 					enemyEvades=true;
 				}
@@ -209,7 +219,7 @@ public class Mechanics
 				{
 					enemyEvades=false;
 				}
-			if (player.getEvade()>(rollDice(1, enemy.getAccuracy())))
+			if (playerShip.getEvade()>(rollDice(1, enemy.getAccuracy())))
 				{
 					playerEvades=true;
 				}
@@ -218,12 +228,12 @@ public class Mechanics
 					playerEvades=false;
 				}
 		}
-		public static void rollStats()
+		public void rollStats()
 		{
 			int damage;
-			if (enemyEvades==false)
+			if (!enemyEvades)
 				{
-				damage=player.getAttack();
+				damage=playerShip.getAttack();
 				damage=vs(damage, enemy.getShields());
 				enemy.setShields(enemy.getShields()-damage);
 				System.out.println(CombatRunner.player.getName() + " , we did " + damage + " damage to their shields!");
@@ -238,22 +248,22 @@ public class Mechanics
 				System.out.print(".");
 				}
 			System.out.println("");
-			if (playerEvades==false)
+			if (!playerEvades)
 				{
 				damage=enemy.getAttack();
-				damage=vs(damage, player.getShields());
-				player.setShields(player.getShields()-damage);
+				damage=vs(damage, playerShip.getShields());
+				playerShip.setShields(playerShip.getShields()-damage);
 				System.out.println("Their attack was successful! They lowered our shields!");
 				}
 			else
 				{
 					System.out.println("Their attack missed!");
 				}
-			System.out.println(CombatRunner.player.getName() + ", our shields are at " + player.getShields());
+			System.out.println(CombatRunner.player.getName() + ", our shields are at " + playerShip.getShields());
 		}
 		public static int vs(int a, int b)
 		{
-			int c=b-(rollDice(1, a));
+			int c=b-(m.rollDice(1, a));
 			if (c<0)
 				{
 					c *= -1;

@@ -39,7 +39,7 @@ public class ShipCreation
 					System.out.println("We don't have that time.");
 					askNum();
 				}
-			else if(j<0)
+			else if(j<1)
 				{
 					System.out.println("Don't be an idiot.");
 					askNum();

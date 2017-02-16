@@ -6,6 +6,7 @@ public class CombatRunner
 		public static String they, their; 
 		public static boolean playGame=true;
 		static Scanner save;
+		public static int difficulty=10;
 		public static void main(String[] argsv) throws IOException
 			{
 				
@@ -28,6 +29,8 @@ public class CombatRunner
 								System.out.println("Thanks for playing!");
 								playGame=false;
 							}
+						difficulty+=5;
+						Mechanics.enemy=Mechanics.randomShip(difficulty);
 					}
 			}
 		public static void homeScreen() throws FileNotFoundException

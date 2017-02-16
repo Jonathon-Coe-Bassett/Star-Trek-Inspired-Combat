@@ -16,6 +16,14 @@ public class Ship
 			accuracy=ac;
 			description=d;
 		}
+		public Ship(Ship randomShip)
+			{
+				name=randomShip.getName();
+				attack=randomShip.getAttack();
+				shields=randomShip.getShields();
+				evade=randomShip.getEvade();
+				accuracy=randomShip.getAccuracy();
+			}
 		public String getDescription()
 			{
 				return description;

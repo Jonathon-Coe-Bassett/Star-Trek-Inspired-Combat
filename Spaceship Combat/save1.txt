@@ -1,5 +1,5 @@
-Captain Michael
-10
-Captain's Pistol / Wickwire Weaponry / a / 1
+NAME
+20
+WEAPON NAME / WEAPON MAKER / a / 10
 m
-USS. Enterprise / 4 / 10 / 13 / 3 / null
+SHIP NAME / 1 / 1 / 1 / 1 / SHIP DESCRIPTION
