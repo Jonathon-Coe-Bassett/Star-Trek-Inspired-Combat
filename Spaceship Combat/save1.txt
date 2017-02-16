@@ -1,5 +1,5 @@
-NAME
-20
-WEAPON NAME / WEAPON MAKER / a / 10
+Captain Coe
+10
+Captain's Pistol / Wickwire Weaponry / a / 1
 m
-SHIP NAME / 1 / 1 / 1 / 1 / SHIP DESCRIPTION
+Balance / 10 / 10 / 5 / 5 / null

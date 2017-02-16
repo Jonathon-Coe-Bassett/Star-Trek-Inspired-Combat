@@ -52,6 +52,7 @@ public class SaveGame
 			        }
 			            // Or we could just do this:
 			            // ex.printStackTrace();
+			        saveAnimation();
 			}
 			public static void testSaveGame()
 			{
@@ -200,5 +201,9 @@ public class SaveGame
 				player=null;
 				player=SaveGame.loadGame();
 				System.out.println("Player loading successful!");
+			}
+			public static void saveAnimation()
+			{
+				Mechanics.print("[]///*//[]==================>");
 			}
 	}
