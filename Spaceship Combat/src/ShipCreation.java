@@ -6,7 +6,7 @@ public class ShipCreation
 		
 		public static Ship buildShip()
 		{
-			Ship ship=new Ship("UNNAMED", 0, 0, 0, 0, null);
+			Ship ship=new Ship("UNNAMED", 0, 0, 0, 0, "The ship you built.");
 			System.out.println("After your impressive performances in defending the Federation, you are now allowed to oversee and dictate the building of your new ship!");
 			System.out.println("You have " + days + " days total to build your ship before your next mission. You can spend any number of days on different ship systems.");
 			//while(days>0)

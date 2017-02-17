@@ -1,11 +1,12 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Mechanics
 	{
 		//static Ship one, two, three, four, five, dev;
 		private static Ship playerShip;
-		private static Ship original=CombatRunner.player.getShip();
+		private static final Ship original=CombatRunner.player.getShip();
 		public static Ship enemy;
 		public static Ship beforeCombat;
 		static ArrayList<Ship> shipBay=new ArrayList<>();
@@ -36,20 +37,14 @@ public class Mechanics
 			}
 		public static void makeShips()
 			{
-//				one=new Ship("SS. Booper Dooper", 5, 3, 7, 5, "The SS Booper Dooper is an older, louder model, but she still packs a punch. She has a slightly higher attack and good maneuverability, but sacrifices her shield power for accuracy.");
-//				two=new Ship("SS. Courage", 7, 3, 2, 8, "SS. Courage has seen her fair share of combat, but rumors say she still wants Imperial blood. She has custom high powered phasers and the best agility in the fleet, however she has low shields and her targeting computers are known to have errors.");	
-//				three=new Ship("SS. Titanic",9, 9, 2, 2, "Don't confuse this ship for the Titanic of old Earth legend; this one is truly un-sinkable! She has the best shield capacity and variety of weapons in the fleet, but her size makes her an easy target." );
-//				four=new Ship("SS. Tiny Tim", 3, 3, 7, 7, "Tiny Ship Tim lives up to her name. She's a small scouting model with low shields and only wields emergency phasers. Her small size, however, makes her a hard target to hit, and her bio-targeting computer makes her incredibly accurate.");
-//				five=new Ship("SS. McGuire", 4, 2, 4, 10, "The SS. McGuire's unique computer system balances between shield, attack, and RCS engines. This computer also has custom targeting subroutines, making the SS. McGuire rarely miss.");
-//				dev=new Ship("DEVSHIP", 100, 100, 100, 100, null);
+				shipBay.add(new Ship("DEVSHIP", 1000, 1000, 1000, 1000, null));
 				shipBay.add(new Ship("SS. Booper Dooper", 5, 3, 7, 5, "The SS Booper Dooper is an older, louder model, but she still packs a punch. She has a slightly higher attack and good maneuverability, but sacrifices her shield power for accuracy."));
 				shipBay.add(new Ship("SS. Courage", 7, 3, 2, 8, "SS. Courage has seen her fair share of combat, but rumors say she still wants Imperial blood. She has custom high powered phasers and the best agility in the fleet, however she has low shields and her targeting computers are known to have errors."));
+				shipBay.add(new Ship("Imperial Star Destroyer", 10, 6, 3, 3, "This vessel is a captured Imperial ship, yet she's different from the ordinary somehow, and the captured crew members kept saying something about someone named Dark Vaiter."));
 				shipBay.add(new Ship("SS. Titanic",9, 9, 2, 2, "Don't confuse this ship for the Titanic of old Earth legend; this one is truly un-sinkable! She has the best shield capacity and variety of weapons in the fleet, but her size makes her an easy target." ));
 				shipBay.add(new Ship("SS. Tiny Tim", 3, 3, 7, 7, "Tiny Ship Tim lives up to her name. She's a small scouting model with low shields and only wields emergency phasers. Her small size, however, makes her a hard target to hit, and her bio-targeting computer makes her incredibly accurate."));
 				shipBay.add(new Ship("SS. McGuire", 4, 2, 4, 10, "The SS. McGuire's unique computer system balances between shield, attack, and RCS engines. This computer also has custom targeting subroutines, making the SS. McGuire rarely miss."));
-				shipBay.add(new Ship("DEVSHIP", 100, 100, 100, 100, null));
-
-
+				shipBay.add(new Ship("USS. Enterprise", 6, 6, 6, 6, "Strangely, this vessel feels almost homely... as if from a dream."));	
 			}
 		public static Ship randomShip(int total)
 		{
@@ -73,18 +68,18 @@ public class Mechanics
 		}
 		public static void chooseShip()
 		{
-			System.out.println("Now, you are lucky enough to chose which ship you pilot. Enter the name of the ship you wish to pilot into your terminal.");
+			System.out.println("Now, you are lucky enough to chose which ship you pilot. Enter the name of the ship you wish to pilot.");
 			for (int i=0; i<shipBay.size(); i++)
 				{
 					Ship print=shipBay.get(i);
 					if (print.getName().equals("DEVSHIP"))
 						{
-							System.out.println("  ");
+							System.out.println(" ");
 						}
 					else
 						{
 						System.out.println(print.getName());
-						System.out.println(print.getDescription());
+						System.out.println("	" + print.getDescription());
 						sleep(100);
 						}
 				}			
@@ -111,7 +106,7 @@ public class Mechanics
 				}
 
 		}
-		public static void shipCombat() throws FileNotFoundException
+		public static void shipCombat() throws IOException
 		{
 			enemy=new Ship(randomShip(CombatRunner.difficulty));
 			playerShip=CombatRunner.player.getShip();
@@ -286,7 +281,7 @@ public class Mechanics
 			for(int i=0; i<s.length(); i++)
 				{
 					System.out.print(s.charAt(i));
-					sleep(50);
+					sleep(10);
 				}
 		}
 	}

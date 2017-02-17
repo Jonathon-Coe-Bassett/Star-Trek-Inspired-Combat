@@ -9,16 +9,23 @@ public class CombatRunner
 		public static int difficulty=10;
 		public static void main(String[] argsv) throws IOException
 			{
-				
+				Mechanics.makeShips();
 				homeScreen();
-				
-				System.out.println("Welcome to the Federation Spaceport! would you like to rebuild your ship?");
 				System.out.println("Currently, you are using the " + player.getShip().getName());
+				player.getShip().printShipInfo();
+				System.out.println("Welcome to the Federation Spaceport! would you like to change your ship?");
 				if(Mechanics.yn())
-				player.setShip(ShipCreation.buildShip());
+					{
+						System.out.println("Would you like to rebuild your ship?");
+						if(Mechanics.yn())
+							{
+								Mechanics.shipBay.add(ShipCreation.buildShip());
+							}
+								Mechanics.chooseShip();
+					}
 				player.askSave();
 				System.out.println("Off to adventure!");
-				System.out.println("For now, you'll just be defensing the Federation's colony Exerpa from the enemy.");
+				System.out.println("For now, you'll just be defending the Federation's colony Exerpa from the enemy.");
 				while(playGame)
 					{
 						Mechanics.shipCombat();
@@ -33,8 +40,11 @@ public class CombatRunner
 						Mechanics.enemy=Mechanics.randomShip(difficulty);
 					}
 			}
-		public static void homeScreen() throws FileNotFoundException
+		public static void homeScreen() throws IOException
 		{
+			Mechanics.sleep(1000);
+			//System.out.print("\b\b\b\b\b");
+			//System.out.print("world");
 			System.out.println("Welcome!");
 			System.out.println("1) LOAD GAME");
 			System.out.println("2) NEW GAME");
@@ -48,7 +58,6 @@ public class CombatRunner
 			else if(in==2)
 				{
 					greetNewPlayer();
-					Mechanics.makeShips();
 					Mechanics.sleep(100);
 					Mechanics.chooseShip();
 					Mechanics.shipCombat();
@@ -75,7 +84,7 @@ public class CombatRunner
 					{
 				String gender=userInput.nextLine();
 				gender=gender.toLowerCase();
-				if (gender.equals("female") || gender.equals("girl"))
+				if (gender.equals("female") || gender.equals("girl") || gender.equals("f"))
 					{
 						player.setGender(true);
 						they="she";
@@ -83,7 +92,7 @@ public class CombatRunner
 						genderNotChosen=false;
 						break;
 					}
-				if (gender.equals("male") || gender.equals("boy"))
+				if (gender.equals("male") || gender.equals("boy") || gender.equals("m"))
 					{
 						player.setGender(false);
 						they="he";

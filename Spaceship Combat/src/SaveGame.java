@@ -39,6 +39,8 @@ public class SaveGame
 			            bufferedWriter.write(g);
 			            bufferedWriter.newLine();
 			            bufferedWriter.write(p.getShip().getName() + " / " + p.getShip().getAttack() + " / " + p.getShip().getShields() + " / " + p.getShip().getEvade() + " / " + p.getShip().getAccuracy() + " / " + p.getShip().getDescription());
+			            bufferedWriter.newLine();
+			            bufferedWriter.write(Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getName() + " / " + Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getAttack() + " / " + Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getShields() + " / " + Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getEvade() + " / " + Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getAccuracy() + " / " + Mechanics.shipBay.get(Mechanics.shipBay.size()-1).getDescription());
 //			            bufferedWriter.write("We are writing");
 //			            bufferedWriter.write(" the text to the file.");
 
@@ -141,6 +143,7 @@ public class SaveGame
 				loadedPlayer.setGender(g);
 				
 				loadedPlayer.setShip(loadShip(file.nextLine()));
+				Mechanics.shipBay.add(loadShip(file.nextLine()));
 				return loadedPlayer;
 			}
 			public static Ship loadShip(String line)
@@ -204,6 +207,19 @@ public class SaveGame
 			}
 			public static void saveAnimation()
 			{
-				Mechanics.print("[]///*//[]==================>");
+				Mechanics.print(" __________________          _-_");
+				System.out.println();
+				Mechanics.print(" \\________________|)____.---'---`---.____ ");
+				System.out.println();
+				Mechanics.print("                ||  \\----._________.----/");
+				System.out.println();
+				Mechanics.print("                ||     / ,' `---'");
+				System.out.println();
+				Mechanics.print("             ___||_,--'  -._");
+				System.out.println();
+				Mechanics.print("            /___          ||(-");
+				System.out.println();
+				Mechanics.print("                `---._____-'");
+				System.out.println("");
 			}
 	}

@@ -1,5 +1,6 @@
-Captain Coe
+Captain Coebit
 10
 Captain's Pistol / Wickwire Weaponry / a / 1
 m
-Balance / 10 / 10 / 5 / 5 / null
+TRASH' / 20 / 1 / 1 / 8 / The ship you built.
+TRASH' / 20 / 1 / 1 / 8 / The ship you built.
